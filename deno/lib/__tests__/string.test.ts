@@ -44,14 +44,17 @@ test("failing validations", () => {
   expect(() => includesFromIndex2.parse("XincludesXX")).toThrow();
   expect(() => startsWith.parse("x")).toThrow();
   expect(() => endsWith.parse("x")).toThrow();
-  expect(() => hostname.parse("ht!tp://invalid.com")).toThrow();
   expect(() => hostname.parse("xn--d1acj3b")).toThrow();
   expect(() => hostname.parse("xn--d1acj3b..com")).toThrow();
   expect(() => hostname.parse("ex@mple.com")).toThrow();
   expect(() => hostname.parse("[2001:db8::zzzz]")).toThrow();
   expect(() => hostname.parse("exa mple.com")).toThrow();
-  expect(() => hostname.parse("-example.com")).toThrow();
   expect(() => hostname.parse("example..com")).toThrow();
+  expect(() => hostname.parse("example.com.")).toThrow();
+  expect(() => hostname.parse("-example.com")).toThrow();
+  expect(() => hostname.parse("example-.com")).toThrow();
+  expect(() => hostname.parse("example.-com")).toThrow();
+  expect(() => hostname.parse("example.com-")).toThrow();
 });
 
 test("email validations", () => {

@@ -858,7 +858,7 @@ export class ZodString extends ZodType<string, ZodStringDef, string> {
         input.data = input.data.toUpperCase();
       } else if (check.kind === "hostname") {
         const domainNameRegex =
-          /^(?!-)(?!.*--)(?!.*\.\.)(?!.*\.$)[a-zA-Z0-9-]{1,63}(?<!-)(\.[a-zA-Z0-9-]{1,63})*$/;
+          /^(?:[a-z0-9](?:[a-z0-9-]{0,61}[a-z0-9])?\.)+[a-z0-9][a-z0-9-]{0,61}[a-z0-9]$/;
         const punycodeRegex = /^xn--[a-zA-Z0-9-]{1,63}\.[a-zA-Z]{2,}$/; // Ensure TLD after punycode
         const ipv4Regex =
           /^(25[0-5]|2[0-4][0-9]|[0-1]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[0-1]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[0-1]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[0-1]?[0-9][0-9]?)$/;
