@@ -49,8 +49,12 @@ test("failing validations", () => {
   expect(() => hostname.parse("ex@mple.com")).toThrow();
   expect(() => hostname.parse("[2001:db8::zzzz]")).toThrow();
   expect(() => hostname.parse("exa mple.com")).toThrow();
-  expect(() => hostname.parse("-example.com")).toThrow();
   expect(() => hostname.parse("example..com")).toThrow();
+  expect(() => hostname.parse("example.com.")).toThrow();
+  expect(() => hostname.parse("-example.com")).toThrow();
+  expect(() => hostname.parse("example-.com")).toThrow();
+  expect(() => hostname.parse("example.-com")).toThrow();
+  expect(() => hostname.parse("example.com-")).toThrow();
 });
 
 test("email validations", () => {
